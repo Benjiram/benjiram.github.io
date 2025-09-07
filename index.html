@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For My Love ❤️</title>
+    <style>
+        body {
+            font-family: 'Arial Rounded MT Bold', 'Arial', sans-serif;
+            background: linear-gradient(to bottom right, #ffccd5, #ffb6c1);
+            text-align: center;
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: #a83f39;
+            cursor: default;
+            user-select: none;
+        }
+        .container {
+            padding: 2rem;
+        }
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+        .heart-btn {
+            background: none;
+            border: none;
+            font-size: 3rem;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            margin: 10px;
+        }
+        .heart-btn:hover {
+            transform: scale(1.2);
+        }
+        .message {
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 20px;
+            padding: 20px;
+            margin: 20px auto;
+            max-width: 300px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+            font-size: 1.2rem;
+        }
+        .message.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .footer {
+            margin-top: 3rem;
+            font-size: 1rem;
+            opacity: 0.7;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>For My Beautiful Girlfriend 💖</h1>
+        <p>(Click on the hearts!)</p>
+
+        <button class="heart-btn" onclick="showMessage(0)">🌸</button>
+        <button class="heart-btn" onclick="showMessage(1)">🍬</button>
+        <button class="heart-btn" onclick="showMessage(2)">🦋</button>
+        <button class="heart-btn" onclick="showMessage(3)">🌷</button>
+        <button class="heart-btn" onclick="showMessage(4)">✨</button>
+
+        <div id="messageBox" class="message"></div>
+    </div>
+
+    <div class="footer">
+        Made with ❤️ for you
+    </div>
+
+    <script>
+        const messages = [
+            "Every day with you is my favorite.",
+            "Your smile is my favorite thing.",
+            "I'm so lucky to have you.",
+            "You make my heart skip a beat.",
+            "I fall for you more every day."
+        ];
+
+        let currentMessage = null;
+
+        function showMessage(index) {
+            // If a message is already showing, hide it first
+            if (currentMessage !== null) {
+                currentMessage.classList.remove('show');
+                // Wait for it to fade out before showing the new one
+                setTimeout(() => {
+                    showNewMessage(index);
+                }, 500);
+            } else {
+                showNewMessage(index);
+            }
+        }
+
+        function showNewMessage(index) {
+            const messageBox = document.getElementById('messageBox');
+            messageBox.textContent = messages[index];
+            messageBox.classList.add('show');
+            currentMessage = messageBox;
+        }
+
+        // Optional: Click anywhere to close the message
+        document.body.addEventListener('click', function(e) {
+            if (currentMessage && !e.target.classList.contains('heart-btn')) {
+                currentMessage.classList.remove('show');
+                currentMessage = null;
+            }
+        });
+    </script>
+</body>
+</html>
