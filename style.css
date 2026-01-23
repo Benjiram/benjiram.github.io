@@ -1,0 +1,559 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    color: #fff;
+    min-height: 100vh;
+    overflow-x: hidden;
+    position: relative;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    position: relative;
+    z-index: 1;
+}
+
+/* Background Elements */
+.background-elements {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    pointer-events: none;
+}
+
+.floating-heart {
+    position: absolute;
+    color: rgba(255, 77, 141, 0.3);
+    font-size: 24px;
+    animation: float 6s ease-in-out infinite;
+}
+
+.floating-heart:nth-child(2) {
+    animation-delay: 1s;
+    color: rgba(255, 182, 193, 0.3);
+}
+
+.floating-heart:nth-child(3) {
+    animation-delay: 2s;
+    color: rgba(220, 20, 60, 0.3);
+}
+
+.floating-heart:nth-child(4) {
+    animation-delay: 3s;
+    color: rgba(255, 105, 180, 0.3);
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0) rotate(0deg);
+    }
+    50% {
+        transform: translateY(-20px) rotate(10deg);
+    }
+}
+
+/* Sections */
+.vase-section, .proposal-section {
+    min-height: 85vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 20px;
+    transition: opacity 0.5s ease;
+}
+
+.proposal-section {
+    display: none;
+}
+
+.section-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.title {
+    font-family: 'Dancing Script', cursive;
+    font-size: 3.5rem;
+    color: #6ee2ff;
+    text-shadow: 0 0 10px rgba(110, 226, 255, 0.7);
+    margin-bottom: 10px;
+}
+
+.subtitle {
+    font-size: 1.2rem;
+    color: #a3d9ff;
+    font-weight: 300;
+}
+
+/* Vase Container */
+.vase-container {
+    position: relative;
+    width: 300px;
+    height: 400px;
+    margin: 30px auto;
+}
+
+.vase {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 150px;
+    height: 200px;
+}
+
+.vase-top {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 20px;
+    background: linear-gradient(to right, #4a90e2, #357abd);
+    border-radius: 10px 10px 0 0;
+}
+
+.vase-body {
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 120px;
+    height: 150px;
+    background: linear-gradient(45deg, #4a90e2, #5aa0f0, #4a90e2);
+    border-radius: 60px 60px 10px 10px;
+    box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.3);
+}
+
+.vase-base {
+    position: absolute;
+    top: 170px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 140px;
+    height: 15px;
+    background: linear-gradient(to right, #357abd, #4a90e2);
+    border-radius: 5px;
+}
+
+/* Flowers */
+.flowers-container {
+    position: absolute;
+    bottom: 180px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    height: 250px;
+}
+
+.flower {
+    position: absolute;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.flower:hover {
+    transform: scale(1.1);
+}
+
+.flower.lily {
+    width: 80px;
+    height: 120px;
+}
+
+.flower.rose {
+    width: 60px;
+    height: 80px;
+}
+
+.flower .stem {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 4px;
+    background: linear-gradient(to top, #2e8b57, #3cb371);
+}
+
+.lily .stem {
+    height: 100px;
+}
+
+.rose .stem {
+    height: 60px;
+}
+
+.flower .petals {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.lily .petals {
+    width: 60px;
+    height: 60px;
+    background: radial-gradient(circle at 30% 30%, #ffb6c1, #ff69b4);
+    border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+    box-shadow: 0 0 20px rgba(255, 105, 180, 0.5);
+}
+
+.rose .petals {
+    width: 50px;
+    height: 50px;
+    background: radial-gradient(circle at 30% 30%, #ff4d8d, #ff0066);
+    border-radius: 50%;
+    box-shadow: 0 0 15px rgba(255, 0, 102, 0.5);
+}
+
+.sparkle {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background-color: #fff;
+    border-radius: 50%;
+    box-shadow: 0 0 10px 2px rgba(255, 255, 255, 0.8);
+    animation: sparkle 2s infinite;
+}
+
+@keyframes sparkle {
+    0%, 100% {
+        opacity: 0;
+        transform: scale(0.5);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.instruction {
+    text-align: center;
+    margin-top: 30px;
+    color: #a3d9ff;
+    font-size: 1.1rem;
+}
+
+.arrow-down {
+    margin-top: 10px;
+    animation: bounce 2s infinite;
+    color: #6ee2ff;
+    font-size: 1.5rem;
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+    }
+    40% {
+        transform: translateY(-10px);
+    }
+    60% {
+        transform: translateY(-5px);
+    }
+}
+
+.next-btn {
+    background: linear-gradient(45deg, #ff4d8d, #ff0066);
+    color: white;
+    border: none;
+    padding: 12px 30px;
+    font-size: 1.2rem;
+    border-radius: 50px;
+    cursor: pointer;
+    margin-top: 30px;
+    transition: all 0.3s ease;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    box-shadow: 0 5px 15px rgba(255, 0, 102, 0.4);
+}
+
+.next-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(255, 0, 102, 0.6);
+}
+
+.next-btn:active {
+    transform: translateY(1px);
+}
+
+/* Love Proposal Panel */
+.love-panel {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    padding: 30px;
+    width: 90%;
+    max-width: 500px;
+    margin: 0 auto 40px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.panel-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.panel-header h2 {
+    font-family: 'Dancing Script', cursive;
+    font-size: 2.5rem;
+    color: #ffb6c1;
+    text-align: center;
+}
+
+.panel-header i {
+    color: #ff4d8d;
+    font-size: 1.8rem;
+}
+
+.panel-body {
+    text-align: center;
+}
+
+.panel-body p {
+    margin-bottom: 15px;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: #e6f7ff;
+}
+
+.buttons-container {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-top: 30px;
+    flex-wrap: wrap;
+}
+
+.btn-yes, .btn-no {
+    padding: 15px 30px;
+    font-size: 1.2rem;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.btn-yes {
+    background: linear-gradient(45deg, #4CAF50, #2E8B57);
+    color: white;
+    box-shadow: 0 5px 15px rgba(76, 175, 80, 0.4);
+}
+
+.btn-yes:hover {
+    background: linear-gradient(45deg, #2E8B57, #4CAF50);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(76, 175, 80, 0.6);
+}
+
+.btn-no {
+    background: linear-gradient(45deg, #FF5252, #D32F2F);
+    color: white;
+    box-shadow: 0 5px 15px rgba(255, 82, 82, 0.4);
+}
+
+.btn-no:hover {
+    background: linear-gradient(45deg, #D32F2F, #FF5252);
+}
+
+/* Flower Animation Area */
+.flower-animation-area {
+    position: relative;
+    width: 100%;
+    height: 300px;
+    margin: 30px 0;
+    overflow: hidden;
+}
+
+.message-display {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    padding: 25px;
+    width: 90%;
+    max-width: 600px;
+    margin: 30px auto;
+    text-align: center;
+    display: none;
+}
+
+.message-display h3 {
+    font-family: 'Dancing Script', cursive;
+    font-size: 2.5rem;
+    color: #ffb6c1;
+    margin-bottom: 15px;
+}
+
+.message-display p {
+    font-size: 1.2rem;
+    line-height: 1.6;
+    color: #e6f7ff;
+}
+
+/* Message Modal */
+.message-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-content {
+    background: linear-gradient(135deg, #1a1a2e, #16213e);
+    border-radius: 20px;
+    padding: 30px;
+    width: 90%;
+    max-width: 500px;
+    position: relative;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.modal-content h3 {
+    font-family: 'Dancing Script', cursive;
+    font-size: 2.2rem;
+    color: #ffb6c1;
+    text-align: center;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.modal-content p {
+    font-size: 1.2rem;
+    line-height: 1.6;
+    color: #e6f7ff;
+    margin-bottom: 25px;
+    text-align: center;
+}
+
+.close-modal {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 28px;
+    color: #ff4d8d;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.close-modal:hover {
+    color: #ff0066;
+}
+
+.close-btn {
+    background: linear-gradient(45deg, #ff4d8d, #ff0066);
+    color: white;
+    border: none;
+    padding: 10px 25px;
+    font-size: 1rem;
+    border-radius: 50px;
+    cursor: pointer;
+    display: block;
+    margin: 0 auto;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+}
+
+.close-btn:hover {
+    background: linear-gradient(45deg, #ff0066, #ff4d8d);
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 20px;
+    color: #a3d9ff;
+    border-top: 1px solid rgba(163, 217, 255, 0.2);
+    margin-top: 30px;
+}
+
+.footer-note {
+    font-family: 'Dancing Script', cursive;
+    font-size: 1.5rem;
+    color: #ffb6c1;
+    margin-top: 10px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .title {
+        font-size: 2.5rem;
+    }
+    
+    .vase-container {
+        width: 250px;
+        height: 350px;
+    }
+    
+    .love-panel {
+        padding: 20px;
+    }
+    
+    .panel-header h2 {
+        font-size: 2rem;
+    }
+    
+    .buttons-container {
+        gap: 15px;
+    }
+    
+    .btn-yes, .btn-no {
+        padding: 12px 25px;
+        font-size: 1.1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .title {
+        font-size: 2rem;
+    }
+    
+    .subtitle {
+        font-size: 1rem;
+    }
+    
+    .vase-container {
+        width: 200px;
+        height: 300px;
+    }
+    
+    .buttons-container {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .btn-yes, .btn-no {
+        width: 100%;
+        max-width: 250px;
+        justify-content: center;
+    }
+}
