@@ -15,46 +15,33 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Love messages for when she clicks on flowers
     const loveMessages = [
-        "Every time I see you, my heart skips a beat.",
-        "You're the most beautiful person I've ever known, inside and out.",
-        "I love the way your eyes light up when you smile.",
-        "Being with you makes every day special.",
-        "I fall in love with you more every single day.",
-        "You're my favorite thought in the morning and my last thought at night.",
-        "I love you more than words could ever express.",
-        "You make me a better person just by being in my life.",
-        "My love for you grows stronger with each passing moment.",
-        "You're the missing piece I've been searching for my whole life."
+        "That's my first valentine with a girl ever hihi",
+        "Maybe m doing too much, I'm waiting for my presents tho :(",
+        "I love you",
+        "kanbghik 9ed lbolissi",
+        "kanbghik 9ed njom"
     ];
     
     // Initialize the vase with flowers
     function initFlowers() {
-        // Create lilies
-        for (let i = 0; i < 7; i++) {
-            createFlower('lily', i);
-        }
+        // Create lilies - positioned to look like they're coming from the vase
+        createFlower('lily', 40, 0);   // Much lower position
+        createFlower('lily', 80, 3);   // Adjusted Y position
+        createFlower('lily', 120, 0);  // Adjusted Y position
         
         // Create roses
-        for (let i = 0; i < 5; i++) {
-            createFlower('rose', i);
-        }
+        createFlower('rose', 60, 0);   // Adjusted Y position
+        createFlower('rose', 100, 0);  // Adjusted Y position
     }
     
-    // Create a flower element
-    function createFlower(type, index) {
+    // Create a flower element at specific position
+    function createFlower(type, left, top) {
         const flower = document.createElement('div');
         flower.className = `flower ${type}`;
         
-        // Random position for each flower
-        const left = type === 'lily' ? 
-            (20 + (index % 4) * 25) : 
-            (40 + (index % 3) * 30);
-        const top = type === 'lily' ? 
-            (30 + Math.floor(index / 4) * 40) : 
-            (50 + Math.floor(index / 3) * 50);
-        
-        flower.style.left = `${left}%`;
-        flower.style.top = `${top}px`;
+        // Position the flower
+        flower.style.left = `${left}px`;
+        flower.style.bottom = `${top}px`;
         
         // Create stem
         const stem = document.createElement('div');
@@ -66,6 +53,15 @@ document.addEventListener('DOMContentLoaded', function() {
         petals.className = 'petals';
         flower.appendChild(petals);
         
+        // Create leaves
+        const leaf = document.createElement('div');
+        leaf.className = 'leaf';
+        flower.appendChild(leaf);
+        
+        const leaf2 = document.createElement('div');
+        leaf2.className = 'leaf-2';
+        flower.appendChild(leaf2);
+        
         // Add click event to show love message
         flower.addEventListener('click', function() {
             const randomMessage = loveMessages[Math.floor(Math.random() * loveMessages.length)];
@@ -76,9 +72,37 @@ document.addEventListener('DOMContentLoaded', function() {
             setTimeout(() => {
                 flower.style.transform = 'scale(1)';
             }, 300);
+            
+            // Add sparkle effect
+            addClickSparkle(flower);
         });
         
         flowersContainer.appendChild(flower);
+    }
+    
+    // Add sparkle effect when flower is clicked
+    function addClickSparkle(flower) {
+        for (let i = 0; i < 5; i++) {
+            const sparkle = document.createElement('div');
+            sparkle.className = 'sparkle';
+            
+            const rect = flower.getBoundingClientRect();
+            const left = Math.random() * 60;
+            const top = Math.random() * 60;
+            
+            sparkle.style.left = `${left}px`;
+            sparkle.style.top = `${top}px`;
+            sparkle.style.animationDelay = `${i * 0.1}s`;
+            
+            flower.appendChild(sparkle);
+            
+            // Remove sparkle after animation
+            setTimeout(() => {
+                if (sparkle.parentNode) {
+                    sparkle.remove();
+                }
+            }, 2000);
+        }
     }
     
     // Show message modal
@@ -158,25 +182,23 @@ document.addEventListener('DOMContentLoaded', function() {
         petals.className = 'petals';
         flower.appendChild(petals);
         
+        // Add leaves for more realism
+        const leaf = document.createElement('div');
+        leaf.className = 'leaf';
+        flower.appendChild(leaf);
+        
+        const leaf2 = document.createElement('div');
+        leaf2.className = 'leaf-2';
+        flower.appendChild(leaf2);
+        
         flowerAnimationArea.appendChild(flower);
     }
     
     // Show love message
     function showLoveMessage() {
-        const messages = [
-            "You've just made me the happiest person in the world!",
-            "I promise to love you and cherish you every single day.",
-            "This is just the beginning of our beautiful journey together.",
-            "My heart is overflowing with love for you, now and forever.",
-            "You are my everything. I love you more than you'll ever know."
-        ];
-        
-        const randomMessage = messages[Math.floor(Math.random() * messages.length)];
-        
         messageDisplay.innerHTML = `
             <h3><i class="fas fa-heart"></i> You Said Yes! <i class="fas fa-heart"></i></h3>
-            <p>${randomMessage}</p>
-            <p>Happy Valentine's Day, my love! 💕</p>
+            <p>I love you too (thankfuly you didn't click on no)</p>
         `;
         
         messageDisplay.style.display = 'block';
@@ -257,10 +279,34 @@ document.addEventListener('DOMContentLoaded', function() {
         
         .falling-flower.lily .petals {
             background: radial-gradient(circle at 30% 30%, #ffb6c1, #ff69b4);
+            border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
         }
         
         .falling-flower.rose .petals {
             background: radial-gradient(circle at 30% 30%, #ff4d8d, #ff0066);
+            border-radius: 40% 50% 40% 50%;
+        }
+        
+        .falling-flower .leaf, .falling-flower .leaf-2 {
+            position: absolute;
+            width: 15px;
+            height: 10px;
+            border-radius: 50% 0 50% 0;
+        }
+        
+        .falling-flower .leaf {
+            bottom: 10px;
+            left: 5px;
+            background: #3cb371;
+            transform: rotate(-30deg);
+        }
+        
+        .falling-flower .leaf-2 {
+            bottom: 15px;
+            right: 5px;
+            background: #2e8b57;
+            border-radius: 0 50% 0 50%;
+            transform: rotate(30deg);
         }
     `;
     document.head.appendChild(style);

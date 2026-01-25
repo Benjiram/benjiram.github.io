@@ -101,7 +101,7 @@ body {
 .vase-container {
     position: relative;
     width: 300px;
-    height: 400px;
+    height: 500px;
     margin: 30px auto;
 }
 
@@ -112,6 +112,7 @@ body {
     transform: translateX(-50%);
     width: 150px;
     height: 200px;
+    z-index: 1;
 }
 
 .vase-top {
@@ -148,74 +149,156 @@ body {
     border-radius: 5px;
 }
 
-/* Flowers */
+/* Flowers Container - Fixed positioning */
 .flowers-container {
     position: absolute;
     bottom: 180px;
     left: 50%;
     transform: translateX(-50%);
-    width: 100%;
-    height: 250px;
+    width: 200px;
+    height: 300px;
+    z-index: 2;
 }
 
+/* Flower Styles - Made to look more realistic */
 .flower {
     position: absolute;
     cursor: pointer;
-    transition: transform 0.3s ease;
+    transition: all 0.3s ease;
+    z-index: 3;
 }
 
 .flower:hover {
     transform: scale(1.1);
+    filter: brightness(1.2);
 }
 
+/* Lily Flower */
 .flower.lily {
-    width: 80px;
+    width: 40px;
     height: 120px;
 }
 
-.flower.rose {
-    width: 60px;
-    height: 80px;
-}
-
-.flower .stem {
+.lily .stem {
     position: absolute;
     bottom: 0;
     left: 50%;
     transform: translateX(-50%);
-    width: 4px;
-    background: linear-gradient(to top, #2e8b57, #3cb371);
-}
-
-.lily .stem {
+    width: 5px;
     height: 100px;
+    background: linear-gradient(to top, #2e8b57, #3cb371);
+    border-radius: 2px;
 }
 
-.rose .stem {
-    height: 60px;
-}
-
-.flower .petals {
+.lily .petals {
     position: absolute;
     top: 0;
     left: 50%;
     transform: translateX(-50%);
-}
-
-.lily .petals {
     width: 60px;
     height: 60px;
     background: radial-gradient(circle at 30% 30%, #ffb6c1, #ff69b4);
     border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
     box-shadow: 0 0 20px rgba(255, 105, 180, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.lily .petals::before {
+    content: '';
+    position: absolute;
+    width: 15px;
+    height: 30px;
+    background: linear-gradient(to bottom, #ffeb3b, #ff9800);
+    border-radius: 50%;
+    transform: rotate(15deg);
+}
+
+/* Rose Flower */
+.flower.rose {
+    width: 40px;
+    height: 100px;
+}
+
+.rose .stem {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 5px;
+    height: 80px;
+    background: linear-gradient(to top, #2e8b57, #3cb371);
+    border-radius: 2px;
 }
 
 .rose .petals {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
     width: 50px;
     height: 50px;
     background: radial-gradient(circle at 30% 30%, #ff4d8d, #ff0066);
-    border-radius: 50%;
+    border-radius: 40% 50% 40% 50%;
     box-shadow: 0 0 15px rgba(255, 0, 102, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.rose .petals::before {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background: radial-gradient(circle at 40% 40%, #ff0066, #cc0052);
+    border-radius: 50%;
+    transform: rotate(45deg);
+}
+
+/* Add leaves to flowers */
+.flower .leaf {
+    position: absolute;
+    width: 15px;
+    height: 10px;
+    background: #3cb371;
+    border-radius: 50% 0 50% 0;
+    z-index: 1;
+}
+
+.lily .leaf {
+    bottom: 30px;
+    left: 10px;
+    transform: rotate(-30deg);
+}
+
+.rose .leaf {
+    bottom: 20px;
+    right: 10px;
+    transform: rotate(30deg);
+}
+
+/* Add another leaf */
+.flower .leaf-2 {
+    position: absolute;
+    width: 15px;
+    height: 10px;
+    background: #2e8b57;
+    border-radius: 0 50% 0 50%;
+    z-index: 1;
+}
+
+.lily .leaf-2 {
+    bottom: 40px;
+    right: 10px;
+    transform: rotate(30deg);
+}
+
+.rose .leaf-2 {
+    bottom: 30px;
+    left: 10px;
+    transform: rotate(-30deg);
 }
 
 .sparkle {
@@ -226,6 +309,7 @@ body {
     border-radius: 50%;
     box-shadow: 0 0 10px 2px rgba(255, 255, 255, 0.8);
     animation: sparkle 2s infinite;
+    z-index: 1;
 }
 
 @keyframes sparkle {
@@ -511,7 +595,7 @@ footer {
     
     .vase-container {
         width: 250px;
-        height: 350px;
+        height: 450px;
     }
     
     .love-panel {
@@ -543,7 +627,7 @@ footer {
     
     .vase-container {
         width: 200px;
-        height: 300px;
+        height: 400px;
     }
     
     .buttons-container {
@@ -556,4 +640,70 @@ footer {
         max-width: 250px;
         justify-content: center;
     }
+}
+
+/* Vase Container - Adjusted for better flower placement */
+.vase-container {
+    position: relative;
+    width: 300px;
+    height: 400px; /* Reduced height since flowers will be lower */
+    margin: 30px auto;
+}
+
+/* Flowers Container - Positioned to start from vase */
+.flowers-container {
+    position: absolute;
+    bottom: 200px; /* Lowered to start from inside the vase */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 200px;
+    height: 200px; /* Reduced height */
+    z-index: 2;
+}
+
+/* Flower base positions - Adjusted to be lower */
+.flower {
+    position: absolute;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    z-index: 3;
+}
+
+.flower:hover {
+    transform: scale(1.1);
+    filter: brightness(1.2);
+}
+
+/* Lily Flower - Adjusted height */
+.flower.lily {
+    width: 40px;
+    height: 130px; /* Reduced height */
+}
+
+.lily .stem {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 5px;
+    height: 120px; /* Shorter stem */
+    background: linear-gradient(to top, #2e8b57, #3cb371);
+    border-radius: 2px;
+}
+
+/* Rose Flower - Adjusted height */
+.flower.rose {
+    width: 40px;
+    height: 80px; /* Reduced height */
+}
+
+.rose .stem {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 5px;
+    height: 60px; /* Shorter stem */
+    background: linear-gradient(to top, #2e8b57, #3cb371);
+    border-radius: 2px;
 }
