@@ -57,15 +57,6 @@ document.addEventListener('DOMContentLoaded', function() {
         // Add click event to show love message
         flower.addEventListener('click', function() {
             showMessageModal(this.dataset.message);
-            
-            // Add a small animation when flower is clicked
-            flower.style.transform = 'scale(1.2)';
-            setTimeout(() => {
-                flower.style.transform = 'scale(1)';
-            }, 300);
-            
-            // Add sparkle effect
-            addClickSparkle(flower);
         });
         
         flowersContainer.appendChild(flower);
