@@ -13,29 +13,20 @@ document.addEventListener('DOMContentLoaded', function() {
     const closeModalBtn = document.querySelector('.close-modal');
     const closeBtn = document.querySelector('.close-btn');
     
-    // Love messages for when she clicks on flowers
-    const loveMessages = [
-        "That's my first valentine with a girl ever hihi",
-        "Maybe m doing too much, I'm waiting for my presents tho :(",
-        "I love you",
-        "kanbghik 9ed lbolissi",
-        "kanbghik 9ed njom"
-    ];
-    
-    // Initialize the vase with flowers
+        // Initialize the vase with flowers
     function initFlowers() {
-        // Create lilies - positioned to look like they're coming from the vase
-        createFlower('lily', 40, 0);   // Much lower position
-        createFlower('lily', 80, 3);   // Adjusted Y position
-        createFlower('lily', 120, 0);  // Adjusted Y position
+        // Create lilies with specific messages
+        createFlower('lily', 40, 0, "That's my first valentine with a girl ever hihi");
+        createFlower('lily', 80, 3, "Maybe m doing too much, I'm waiting for my presents tho :(");
+        createFlower('lily', 120, 0, "I love you");
         
-        // Create roses
-        createFlower('rose', 60, 0);   // Adjusted Y position
-        createFlower('rose', 100, 0);  // Adjusted Y position
+        // Create roses with specific messages
+        createFlower('rose', 60, 0, "kanbghik 9ed lbolissi");
+        createFlower('rose', 100, 0, "kanbghik 9ed njom");
     }
     
     // Create a flower element at specific position
-    function createFlower(type, left, top) {
+    function createFlower(type, left, top, message) {
         const flower = document.createElement('div');
         flower.className = `flower ${type}`;
         
@@ -43,6 +34,7 @@ document.addEventListener('DOMContentLoaded', function() {
         flower.style.left = `${left}px`;
         flower.style.bottom = `${top}px`;
         
+        flower.dataset.message = message;
         // Create stem
         const stem = document.createElement('div');
         stem.className = 'stem';
@@ -64,8 +56,7 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // Add click event to show love message
         flower.addEventListener('click', function() {
-            const randomMessage = loveMessages[Math.floor(Math.random() * loveMessages.length)];
-            showMessageModal(randomMessage);
+            showMessageModal(this.dataset.message);
             
             // Add a small animation when flower is clicked
             flower.style.transform = 'scale(1.2)';
@@ -315,6 +306,6 @@ document.addEventListener('DOMContentLoaded', function() {
     initFlowers();
     
     // Add a sweet message in the console
-    console.log("%c💝 For My Valentine 💝", "color: #ff4d8d; font-size: 18px; font-weight: bold;");
+    console.log("%c💝 I love you habibty 💝", "color: #ff4d8d; font-size: 18px; font-weight: bold;");
     console.log("%cThis website was created with love for someone very special.", "color: #6ee2ff; font-size: 14px;");
 });
