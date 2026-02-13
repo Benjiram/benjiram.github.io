@@ -180,7 +180,7 @@ document.addEventListener('DOMContentLoaded', function() {
     function showLoveMessage() {
         messageDisplay.innerHTML = `
             <h3><i class="fas fa-heart"></i> You Said Yes! <i class="fas fa-heart"></i></h3>
-            <p>I love you too (thankfuly you didn't click on no)</p>
+            <p>I love you too 👀 </p>
         `;
         
         messageDisplay.style.display = 'block';
