@@ -179,8 +179,8 @@ document.addEventListener('DOMContentLoaded', function() {
     // Show love message
     function showLoveMessage() {
         messageDisplay.innerHTML = `
-            <h3><i class="fas fa-heart"></i> You Said Yes! <i class="fas fa-heart"></i></h3>
-            <p>I love you too 👀 </p>
+            <h3><i class="fas fa-heart"></i> You Said Yes 👀 <i class="fas fa-heart"></i></h3>
+            <p>I love you too ! </p>
         `;
         
         messageDisplay.style.display = 'block';
